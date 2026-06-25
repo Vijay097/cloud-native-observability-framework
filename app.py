@@ -18,7 +18,7 @@ def home():
         </head>
         <body>
             <div class="container">
-                <h1>🚀 Success! Project 2 is Live!</h1>
+                <h1>🚀 Success! Project 3 is Live!</h1>
                 <p>Your Multi-Stage GitOps CI/CD Pipeline is working perfectly.</p>
                 <p>Deployed application status: <span class="badge">HEALTHY</span></p>
             </div>

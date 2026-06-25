@@ -12,7 +12,7 @@ def test_home_endpoint(client):
     """Verifies that the main home page loads successfully"""
     response = client.get('/')
     assert response.status_code == 200
-    assert b"Success! Project 1 is Live!" in response.data
+    assert b"Success! Project 3 is Live!" in response.data
 
 def test_health_endpoint(client):
     """Verifies that the health check endpoint returns valid JSON"""
