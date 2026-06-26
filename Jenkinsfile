@@ -79,20 +79,20 @@ pipeline {
                   --parameters 'commands=[
                     "export KUBECONFIG=/home/ec2-user/.kube/config",
                     
-                    # 1. Install Helm if it is not already installed on the server
+                    
                     "if ! command -v helm &> /dev/null; then curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && chmod 700 get_helm.sh && ./get_helm.sh; fi",
                     
-                    # 2. Add the official Prometheus Community Helm chart repository
+                    
                     "helm repo add prometheus-community https://prometheus-community.github.io/helm-charts || true",
                     "helm repo update",
                     
-                    # 3. Create an isolated namespace for monitoring if it doesn't exist
+                    
                     "kubectl get ns monitoring || kubectl create namespace monitoring",
                     
-                    # 4. Install or upgrade the cloud-native Prometheus & Grafana stack
+                    
                     "helm upgrade --install prometheus-stack prometheus-community/kube-prometheus-stack --namespace monitoring",
                     
-                    # 5. Create a permanent systemd background service to bridge Grafana to port 30006
+                    
                     "echo \\"[Unit]\\" | sudo tee /etc/systemd/system/grafana-forward.service",
                     "echo \\"Description=Grafana Monitoring Bridge\\" | sudo tee -a /etc/systemd/system/grafana-forward.service",
                     "echo \\"[Service]\\" | sudo tee -a /etc/systemd/system/grafana-forward.service",
@@ -103,7 +103,7 @@ pipeline {
                     "echo \\"[Install]\\" | sudo tee -a /etc/systemd/system/grafana-forward.service",
                     "echo \\"WantedBy=multi-user.target\\" | sudo tee -a /etc/systemd/system/grafana-forward.service",
                     
-                    # 6. Reload the background service configurations and start the network bridge
+                   
                     "sudo systemctl daemon-reload",
                     "sudo systemctl enable grafana-forward",
                     "sudo systemctl restart grafana-forward"
