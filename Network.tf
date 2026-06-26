@@ -183,6 +183,14 @@ resource "aws_vpc_security_group_ingress_rule" "allow_tls" {
   to_port           = 80
 }
 
+resource "aws_vpc_security_group_ingress_rule" "allow_30006" {
+  security_group_id = aws_security_group.ALB_sg.id
+  cidr_ipv4         = "0.0.0.0/0" 
+  from_port         = 30006
+  ip_protocol       = "tcp"
+  to_port           = 30006
+}
+
 resource "aws_security_group" "jenkins_sg" {
   name        = "Jenkins_sg"
   description = "Jenkins security group"
